@@ -28,7 +28,7 @@ int secondLargest(int arr[],int n)
     return res;
 }*/
 //The above function do two traversal. You can also do it by sorting function (sort())but it is (nlogn) time
-//Below solution is most efficient O(n) T.C..
+//Below solution is most efficient O(n) T.C. it does only one traversal.
 int secondLargest(int arr[] , int n )
 {
     int res = -1, largest = 0 ;
