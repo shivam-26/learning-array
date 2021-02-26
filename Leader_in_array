@@ -1,0 +1,44 @@
+/*C++ program to print leaders in array. An element is leader when there is no element greater then it is in right of it. */
+#include <bits/stdc++.h>
+using namespace std;
+/*void printLeaders(int arr[], int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        bool flag = false;
+        for(int j=i+1;j<n;j++)
+        {
+            if(arr[i]<=arr[j])
+            {
+                flag=true;
+                break;
+            }
+        }
+        if(flag==false)cout<<arr[i]<<" ";
+    }
+}
+*/
+
+//Optimised solution T.C. :- O(n)
+void printLeaders(int arr[] , int n)
+{
+    int curr_leader = arr[n-1];
+    cout<<curr_leader<<" ";
+    for(int i = n-2;i>=0;i--)
+    {
+        if(curr_leader < arr[i])
+         {curr_leader = arr[i];
+         cout<<arr[i]<<" ";
+         }
+    }
+}
+
+
+
+int main() 
+{ 
+    int arr[] = {16, 17, 4, 3, 5, 2}; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    printLeaders(arr, n); 
+    return 0; 
+} 
