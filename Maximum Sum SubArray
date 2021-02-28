@@ -1,0 +1,36 @@
+/*C++ program to get maximum sum of subarray(continiuous elements)in array. */
+#include <bits/stdc++.h>
+using namespace std;
+/*int maxSumSubarray(int arr[],int n)
+{
+    int res = arr[0];
+    for(int i=0;i<n;i++)
+    {
+        int curr=0;
+        for(int j=i;j<n;j++)
+        {
+            curr = curr + arr[j];
+            res = max(curr,res);
+        }
+    }
+    return res;
+}*/
+int maxSumSubarray(int arr[],int n)
+{
+    int res =0;
+    int maxEnd = arr[0];
+    for(int i=0;i<n;i++)
+    {
+        maxEnd = max(maxEnd + arr[i],arr[i]);
+        res = max(res,maxEnd);
+    }
+    return res;
+}
+int main()
+{
+    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3};
+    int n = sizeof(a)/sizeof(a[0]);
+    int max_sum = maxSumSubarray(a, n);
+    cout << "Maximum contiguous sum is " << max_sum;
+    return 0;
+}
