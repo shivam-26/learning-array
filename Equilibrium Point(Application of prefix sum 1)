@@ -1,0 +1,42 @@
+/*C++ program to know if there is an equilibrium point in array. */
+#include <bits/stdc++.h>
+using namespace std;
+//Naive Approach
+/*int EquilibriumPoint(int arr[], int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        int l_sum = 0,r_sum = 0; 
+        for(int j=0;j<i;j++)
+          l_sum += arr[j];
+        for(int k=i+1;k<n;k++)
+          r_sum += arr[k];
+        if(l_sum == r_sum)
+          return i;
+    }
+    return -1;
+}*/
+// Efficient solution
+int EquilibriumPoint(int arr[],int n)
+{
+    int sum =0;
+    for(int i=0;i<n;i++)
+       sum += arr[i];
+    int l_sum=0;
+    for(int i=0;i<n;i++)
+    {
+        if(l_sum == sum-arr[i])
+         return i;
+        l_sum += arr[i];
+        sum -= arr[i];
+    }
+    return -1;
+}
+int main() 
+{ 
+    int arr[] = { -7, 1, 5, 2, -4, 3, 0 }; 
+    int arr_size = sizeof(arr) / sizeof(arr[0]); 
+    cout << EquilibriumPoint(arr, arr_size); 
+    return 0; 
+} 
+  
