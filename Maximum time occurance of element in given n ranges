@@ -1,0 +1,31 @@
+/*C++ program to get maximum appearing element in given n ranges. */
+#include <bits/stdc++.h>
+#include<vector>
+using namespace std;
+int MaxNumInRanges(int L[],int R[],int n)
+{
+    int arr[1000];
+    memset(arr, 0, sizeof arr); //Initialising all elements to zero in array.
+    
+    for(int i=0;i<n;i++)
+    {
+        arr[L[i]]++;
+        arr[R[i]+1]--;
+    }
+    int maxm = arr[0],res = 0;
+    for(int i=1;i<1000;i++)
+    {
+        arr[i] += arr[i-1];
+        if(maxm < arr[i]){maxm = arr[i];res=i;}
+    }
+    return res;
+}
+int main() 
+{ 
+    int L[] = { 1, 4, 9, 13, 21 }; 
+    int R[] = { 15, 8, 12, 20, 30 }; 
+    int n = sizeof(L) / sizeof(L[0]); 
+  
+    cout <<  MaxNumInRanges(L, R, n) << endl; 
+    return 0; 
+} 
