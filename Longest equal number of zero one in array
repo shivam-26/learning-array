@@ -1,0 +1,104 @@
+/*C++ program  to FIND LONGEST SUBARRAY WITH EQUAL ZERO AND ONE of given array.*/
+#include<bits/stdc++.h>
+using namespace std;
+/*int equalZeroOneLongestSubarray(int arr[],int n)
+{
+    int sum=0;
+    int maxSize = -1,startIndex;
+    for(int i=0;i<n;i++)
+    {
+        sum = (arr[i]==0)? -1 :1;
+        for(int j=i+1;j<n;j++)
+        {
+           (arr[j]==0) ? sum += -1 : sum += 1;
+           if(sum==0 && maxSize<j-i+1)
+           {
+               maxSize=j-i+1;
+               startIndex=i;
+           }
+        }
+    }
+    if(maxSize==-1) 
+      cout<<"NO such array";
+     else
+       cout << startIndex << " to "
+             << startIndex + maxSize - 1;
+ return maxSize;
+}
+int main()
+{
+    int arr[] = { 1, 0, 0, 1, 0, 1, 1 };
+    int size = sizeof(arr) / sizeof(arr[0]);
+ 
+    equalZeroOneLongestSubarray(arr, size);
+    return 0;
+}
+*/
+int maxLen(int arr[], int n)
+{
+    // Creates an empty hashMap hM
+ 
+    unordered_map<int, int> hM;
+ 
+    int sum = 0; // Initialize sum of elements
+    int max_len = 0; // Initialize result
+    int ending_index = -1;
+ 
+    for (int i = 0; i < n; i++)
+        arr[i] = (arr[i] == 0) ? -1 : 1;
+ 
+    // Traverse through the given array
+ 
+    for (int i = 0; i < n; i++) {
+        // Add current element to sum
+ 
+        sum += arr[i];
+ 
+        // To handle sum=0 at last index
+ 
+        if (sum == 0) {
+            max_len = i + 1;
+            ending_index = i;
+        }
+ 
+        // If this sum is seen before, then update max_len
+        // if required
+ 
+        if (hM.find(sum) != hM.end()) {
+            if (max_len < i - hM[sum]) {
+                max_len = i - hM[sum];
+                ending_index = i;
+            }
+        }
+        else // Else put this sum in hash table
+            hM[sum] = i;
+    }
+ 
+    for (int i = 0; i < n; i++)
+        arr[i] = (arr[i] == -1) ? 0 : 1;
+ 
+    printf("%d to %d\n",
+           ending_index - max_len + 1, ending_index);
+ 
+    return max_len;
+}
+ 
+// Driver method
+ 
+int main()
+{
+    int arr[] = { 1, 0, 0, 1, 0, 1, 1 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+ 
+    maxLen(arr, n);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
